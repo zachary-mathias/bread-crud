@@ -2,7 +2,6 @@ const React = require('react')
 const Default = require('./layouts/default')
 
 function Show({ bread, index }) {
-  console.log(bread)
   return (
     <Default>
       
@@ -16,6 +15,9 @@ function Show({ bread, index }) {
         have gluten
       </p>
       <img src={bread.image} alt={bread.name}/>
+      <a href={`/breads/${index}/edit`}>
+        <button> Edit </button>
+      </a>
       <li>
         <a href={'/breads'}>Go home</a>
       </li>
