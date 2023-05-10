@@ -1,6 +1,7 @@
-require('dotenv').config()
 const express = require('express')
 const methodOverride = require('method-override')
+const mongoose = require('mongoose')
+require('dotenv').config()
 const breadController = require('./controllers/breads')
 
 const app = express()
@@ -15,6 +16,11 @@ app.engine('jsx', require('express-react-views').createEngine())
 
 // routes
 app.use('/breads', breadController)
+
+// db connection
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('DB connected'))
+    .catch(err => console.error(err));
 
 const PORT = process.env.PORT
 
